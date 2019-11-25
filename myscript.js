@@ -20,8 +20,14 @@ $(document).ready(function(){
         console.log(listaFilm);
 
         for (var i = 0; i < listaFilm.length; i++){
+          var titolo = listaFilm[i].title;
+          console.log(titolo);
           var titoloOriginale = listaFilm[i].original_title;
           console.log(titoloOriginale);
+          var lingua = listaFilm[i].original_language;
+          console.log(lingua);
+          var voto = listaFilm[i].vote_average;
+          console.log(voto);
         }
 
       }
