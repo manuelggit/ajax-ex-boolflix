@@ -1,20 +1,40 @@
 $(document).ready(function(){
 
+$('input').keyup(function(event){
+
+  var query = $('input').val().toLowerCase();
+  console.log(query);
+
   $.ajax ({
-    url: "https://api.themoviedb.org/3/movie/550?api_key=26b65514bf0d0d8d8b3921ff50e0770b&query=ritorno+al+futuro",
+    url: "https://api.themoviedb.org/3/search/movie?api_key=26b65514bf0d0d8d8b3921ff50e0770b",
     method: "GET",
+    data: {
+      query: query
+    },
     success: function (filmapi) {
-      var title = filmapi.title;
-      console.log("il titolo è:", title);
-      var original_title = filmapi.original_title;
-      console.log("il titolo originale è:", original_title);
-      var original_language = filmapi.original_language;
-      console.log("la lingua originale è:", original_language);
-      var vote_average = filmapi.vote_average;
-      console.log("il voto è:", vote_average);
+      console.log(filmapi);
+
+      var listaFilm = filmapi.results;
+      console.log(listaFilm);
+
+      for (var i = 0; i < listaFilm.length; i++){
+        var titoloOriginale = listaFilm[i].original_title;
+        console.log(titoloOriginale);
+      }
+
     }
+
   });
 
+})
 
+
+
+
+
+  // var source = $("template").html();
+  // console.log(source);
+  // var template = Handlebars.compile(source);
+  // console.log(template);
 
 });
