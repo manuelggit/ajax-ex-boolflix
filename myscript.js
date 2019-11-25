@@ -13,11 +13,7 @@ $(document).ready(function(){
       var vote_average = filmapi.vote_average;
       console.log("il voto è:", vote_average);
     }
-  })
-
-  var template = Handlebars.compile("{{doesWhat}}");
-  // execute the compiled template and print the output to the console
-  console.log(template({ doesWhat: "rocks!" }));
+  });
 
 
 
