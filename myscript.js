@@ -1,43 +1,51 @@
 $(document).ready(function(){
 
+  // stampo in console quello che digito a tastiera
   $('input').keyup(function(event){
 
     var query = $('input').val().toLowerCase();
     console.log(query);
 
+  // al click sul "button"
   $('button').click(function(){
 
+    // faccio chiamata ajax
     $.ajax ({
       url: "https://api.themoviedb.org/3/search/movie?api_key=26b65514bf0d0d8d8b3921ff50e0770b",
       method: "GET",
       data: {
-        query: query
+        query: query // cambio dinamicamente l'url con la ricerca dell'utente
       },
       success: function (filmapi) {
-        console.log(filmapi);
+        console.log(filmapi); // stampo tutto
 
-        var listaFilm = filmapi.results;
-        console.log(listaFilm);
+        // // stampo a console tutti gli oggetti
+        var listaFilm = filmapi.results; // stampo solo l'array di oggetti "results"
 
+        // ciclo l'array di oggetti listaFilm in tutta la sua lunghezza
         for (var i = 0; i < listaFilm.length; i++){
           var titolo = listaFilm[i].title;
-          console.log(titolo);
+          console.log(titolo); //stampo il titolo che è all'interno di ogni oggetto
           var titoloOriginale = listaFilm[i].original_title;
-          console.log(titoloOriginale);
+          console.log(titoloOriginale); // stampo il titolo originale
           var lingua = listaFilm[i].original_language;
-          console.log(lingua);
+          console.log(lingua); // stampo la lingua
           var voto = listaFilm[i].vote_average;
-          console.log(voto);
+          console.log(voto); // stampo il voto
 
+          // con l'append stampo in pagina i 4 valori che mi interessano
           $('#id').append('<div>'+titolo+'</div>');
           $('#id').append('<div>'+titoloOriginale+'</div>');
           $('#id').append('<div>'+lingua+'</div>');
           $('#id').append('<div>'+voto+'</div>');
+          $('#id').append('<div> //////////// </div>');
         }
 
       }
 
     });
+
+    $('input').val(""); //rendo l'input vuoto al click
 
   });
 
