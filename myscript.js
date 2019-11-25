@@ -28,6 +28,11 @@ $(document).ready(function(){
           console.log(lingua);
           var voto = listaFilm[i].vote_average;
           console.log(voto);
+
+          $('#id').append('<div>'+titolo+'</div>');
+          $('#id').append('<div>'+titoloOriginale+'</div>');
+          $('#id').append('<div>'+lingua+'</div>');
+          $('#id').append('<div>'+voto+'</div>');
         }
 
       }
