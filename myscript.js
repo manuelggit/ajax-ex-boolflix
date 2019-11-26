@@ -4,7 +4,7 @@ $(document).ready(function(){
   $('input').keyup(function(event){
 
     var query = $('input').val().toLowerCase();
-    console.log(query);
+    // console.log(query);
 
   // al click sul "button"
   $('button').click(function(){
@@ -17,17 +17,15 @@ $(document).ready(function(){
         query: query, // cambio dinamicamente l'url con la ricerca dell'utente
         original_language: "it-IT", //cerco solo i risultati in italiano
       },
-      success: function (filmapi) {
-        console.log(filmapi); // stampo tutto
 
+      success: function (filmapi) {
+        // console.log(filmapi); // stampo tutto
         // // stampo a console tutti gli oggetti
         var listaFilm = filmapi.results; // stampo solo l'array di oggetti "results"
         stampa(listaFilm); //invoco la funzione per stampare la lista dei film
         if (listaFilm.length > 0) { //rendo l'input vuoto solo se ho ricevuto dei risultati
           inputReset(); // invoco la funzione di inputReset
         }
-
-
       },
 
       error: function(error){
@@ -38,9 +36,11 @@ $(document).ready(function(){
 
   });
 
-})
+  })
 
 });
+
+// FUNZIONI
 
 // creo la funzione di reset dell'input
 function inputReset(){
@@ -51,8 +51,8 @@ function inputReset(){
 function stampa(listaFilm){
   var risultati = $('#risultati');
 
-  var source = $('#film-template').html();
-  var template = Handlebars.compile(source);
+  var sorgenteHtml = $('#film-template').html();
+  var template = Handlebars.compile(sorgenteHtml);
 
   for (var i = 0; i < listaFilm.length; i++) { //ciclo la lista dei film
     var film = listaFilm[i]; //mi ricavo il singolo film
@@ -63,6 +63,10 @@ function stampa(listaFilm){
       Lingua: film.original_language,
       Voto: film.vote_average,
     }
+
+    // dimezzo e arrotondo il voto in funzione della creazione delle stelline
+    var arrotondato = Math.round(voto/2);
+    console.log('arrotondato', arrotondato);
 
     var html = template(context); //estraiamo l'html dal context compilato
     risultati.append(html); //appendiamolo all'interno di "#risultati"
