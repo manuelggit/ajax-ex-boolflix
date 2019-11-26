@@ -22,26 +22,11 @@ $(document).ready(function(){
 
         // // stampo a console tutti gli oggetti
         var listaFilm = filmapi.results; // stampo solo l'array di oggetti "results"
-        stampa(listaFilm);
+        stampa(listaFilm); //invoco la funzione per stampare la lista dei film
+        if (listaFilm.length > 0) { //rendo l'input vuoto solo se ho ricevuto dei risultati
+           $('input').val(""); //rendo l'input vuoto al click
+        }
 
-        // // ciclo l'array di oggetti listaFilm in tutta la sua lunghezza
-        // for (var i = 0; i < listaFilm.length; i++){
-        //   var titolo = listaFilm[i].title;
-        //   console.log(titolo); //stampo il titolo che è all'interno di ogni oggetto
-        //   var titoloOriginale = listaFilm[i].original_title;
-        //   console.log(titoloOriginale); // stampo il titolo originale
-        //   var lingua = listaFilm[i].original_language;
-        //   console.log(lingua); // stampo la lingua
-        //   var voto = listaFilm[i].vote_average;
-        //   console.log(voto); // stampo il voto
-        //
-        //   // con l'append stampo in pagina i 4 valori che mi interessano
-        //   $('#id').append('<div>'+titolo+'</div>');
-        //   $('#id').append('<div>'+titoloOriginale+'</div>');
-        //   $('#id').append('<div>'+lingua+'</div>');
-        //   $('#id').append('<div>'+voto+'</div>');
-        //   $('#id').append('<div> //////////// </div>');
-        // }
 
       },
 
@@ -50,8 +35,6 @@ $(document).ready(function(){
       }
 
     });
-
-    $('input').val(""); //rendo l'input vuoto al click
 
   });
 
