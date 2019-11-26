@@ -24,7 +24,7 @@ $(document).ready(function(){
         var listaFilm = filmapi.results; // stampo solo l'array di oggetti "results"
         stampa(listaFilm); //invoco la funzione per stampare la lista dei film
         if (listaFilm.length > 0) { //rendo l'input vuoto solo se ho ricevuto dei risultati
-           $('input').val(""); //rendo l'input vuoto al click
+          inputReset(); // invoco la funzione di inputReset
         }
 
 
@@ -41,6 +41,11 @@ $(document).ready(function(){
 })
 
 });
+
+// creo la funzione di reset dell'input
+function inputReset(){
+  $('input').val(""); //rendo l'input vuoto al click
+}
 
 // funzione per stampare la lista dei film
 function stampa(listaFilm){
