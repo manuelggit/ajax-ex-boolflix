@@ -98,8 +98,10 @@ function stampa(listaFilm){
     console.log(lingua);
     if (lingua === 'it'){
       aggiungiBandiera = '<img src="img/it.png" alt="italia">'
-    } if (lingua === 'en'){
+    } else if (lingua === 'en'){
       aggiungiBandiera = '<img src="img/en.png" alt="inghilterra">'
+    } else {
+      aggiungiBandiera = lingua;
     }
     return aggiungiBandiera;
   }

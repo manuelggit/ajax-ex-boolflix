@@ -1,0 +1,14 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+header, #risultati {
+  margin: 20px;
+}
+
+.info-lingua img {
+  width: auto;
+  height: 15px;
+}
