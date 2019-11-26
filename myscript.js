@@ -60,17 +60,49 @@ function stampa(listaFilm){
     var context = { //compiliamo il context con ciò che ci serve
       Titolo: film.title,
       Titolo_originale: film.original_title,
-      Lingua: film.original_language,
+      Lingua: stampaBandiere(),
       Voto: film.vote_average,
+      Stelle: stampaStelle(),
     }
 
-    // dimezzo e arrotondo il voto in funzione della creazione delle stelline
-    var voto = film.vote_average;
-    var arrotondato = Math.round(voto/2);
-    console.log('stelle', arrotondato);
 
     var html = template(context); //estraiamo l'html dal context compilato
     risultati.append(html); //appendiamolo all'interno di "#risultati"
   }
+
+  // funzione per stampare le stelle
+  function stampaStelle(stella){
+    // dimezzo e arrotondo il voto in funzione della creazione delle stelline
+    var voto = film.vote_average;
+    var stelle = Math.round(voto/2);
+    console.log('stelle del film', stelle);
+
+    var contenitoreStelle = [];
+    console.log(contenitoreStelle);
+    for (var i = 1; i <= 5; i++){
+      if(i <= stelle){
+        console.log(i, 'stella piena');
+        // contenitoreStelle.push('<i class="fas fa-star"></i>');
+      } else {
+        console.log(i, 'stella vuota');
+        // contenitoreStelle.push('<i class="far fa-star"></i>');
+      }
+    return contenitoreStelle
+
+    }
+  }
+
+  function stampaBandiere(){
+    var aggiungiBandiera = '';
+    var lingua = film.original_language;
+    console.log(lingua);
+    if (lingua === 'it'){
+      aggiungiBandiera = '<img src="img/it.png" alt="italia">'
+    } if (lingua === 'en'){
+      aggiungiBandiera = '<img src="img/en.png" alt="inghilterra">'
+    }
+    return aggiungiBandiera;
+  }
+
 
 }
