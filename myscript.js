@@ -64,18 +64,20 @@ function stampa(listaFilm){
   var risultati = $('#risultati');
 
   var source = $('#film-template').html();
-  var template = handlebars.compile(source);
+  var template = Handlebars.compile(source);
 
   for (var i = 0; i < listaFilm.length; i++) { //ciclo la lista dei film
     var film = listaFilm[i]; //mi ricavo il singolo film
 
-    var context = {
-      title: film.title,
-      original_title: film.original_title,
-      original_language: film.original_language,
-      vote_average: film.vote_average,
+    var context = { //compiliamo il context con ciò che ci serve
+      Titolo: film.title,
+      Titolo_originale: film.original_title,
+      Lingua: film.original_language,
+      Voto: film.vote_average,
     }
-    
+
+    var html = template(context); //estraiamo l'html dal context compilato
+    risultati.append(html); //appendiamolo all'interno di "#risultati"
   }
 
 }
