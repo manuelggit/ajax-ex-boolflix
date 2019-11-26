@@ -14,7 +14,8 @@ $(document).ready(function(){
       url: "https://api.themoviedb.org/3/search/movie?api_key=26b65514bf0d0d8d8b3921ff50e0770b",
       method: "GET",
       data: {
-        query: query // cambio dinamicamente l'url con la ricerca dell'utente
+        query: query, // cambio dinamicamente l'url con la ricerca dell'utente
+        original_language: "it-IT" //cerco solo i risultati in italiano
       },
       success: function (filmapi) {
         console.log(filmapi); // stampo tutto
@@ -41,6 +42,11 @@ $(document).ready(function(){
           $('#id').append('<div> //////////// </div>');
         }
 
+      },
+
+      error: function(error){
+        console.log('Errore', error);
+        
       }
 
     });
