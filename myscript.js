@@ -65,8 +65,9 @@ function stampa(listaFilm){
     }
 
     // dimezzo e arrotondo il voto in funzione della creazione delle stelline
+    var voto = film.vote_average;
     var arrotondato = Math.round(voto/2);
-    console.log('arrotondato', arrotondato);
+    console.log('stelle', arrotondato);
 
     var html = template(context); //estraiamo l'html dal context compilato
     risultati.append(html); //appendiamolo all'interno di "#risultati"
