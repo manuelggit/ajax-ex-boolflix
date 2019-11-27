@@ -15,21 +15,21 @@ $(document).ready(function(){
       method: "GET",
       data: {
         query: query, // cambio dinamicamente l'url con la ricerca dell'utente
-        original_language: "it-IT", //cerco solo i risultati-film in italiano
+        original_language: "it-IT", //cerco solo i risultati in italiano
       },
 
       success: function (data) {
         // console.log(data); // stampo tutto
         // // stampo a console tutti gli oggetti
-        var listaFilm = data.results; // stampo solo l'array di oggetti "results"
-        stampa("movie", listaFilm); //invoco la funzione per stampare la lista dei film
-        if (listaFilm.length > 0) { //rendo l'input vuoto solo se ho ricevuto dei risultati-film
+        var listaElementi = data.results; // stampo solo l'array di oggetti "results"
+        stampa("movie", listaElementi); //invoco la funzione per stampare la lista degli elementi "movie"
+        if (listaElementi.length > 0) { //rendo l'input vuoto solo se ho ricevuto dei risultati
           inputReset(); // invoco la funzione di inputReset
         }
       },
 
       error: function(error){
-        // console.log('Errore', error);
+        alert("c'è un errore!");
       }
 
     });
@@ -40,30 +40,29 @@ $(document).ready(function(){
       method: "GET",
       data: {
         query: query, // cambio dinamicamente l'url con la ricerca dell'utente
-        original_language: "it-IT", //cerco solo i risultati-film in italiano
+        original_language: "it-IT", //cerco solo i risultati in italiano
       },
 
       success: function (data) {
         // console.log(data); // stampo tutto
-        // // stampo a console tutti gli oggetti
-        var listaFilm = data.results; // stampo solo l'array di oggetti "results"
-        stampa("tv", listaFilm); //invoco la funzione per stampare la lista dei film
-        if (listaFilm.length > 0) { //rendo l'input vuoto solo se ho ricevuto dei risultati-film
+        var listaElementi = data.results; // stampo solo l'array di oggetti "results"
+        stampa("tv", listaElementi); //invoco la funzione per stampare la lista degli elementi "tv"
+        if (listaElementi.length > 0) { //rendo l'input vuoto solo se ho ricevuto dei risultati
           inputReset(); // invoco la funzione di inputReset
         }
       },
 
       error: function(error){
-        // console.log('Errore', error);
+        alert("c'è un errore!");
       }
-
     });
-
   });
-
   })
 
 });
+
+
+
 
 // FUNZIONI
 
@@ -72,140 +71,33 @@ function inputReset(){
   $('input').val(""); //rendo l'input vuoto al click
 }
 
-// funzione per stampare la lista dei film
-function stampa(tipo, listaFilm){
-  var risultatiFilm = $('#risultati-film');
+// funzione per stampare la lista degli elementi
+function stampa(type, listaElementi){
+  var risultati = $('#risultati');
 
-  var sorgenteHtml = $('#film-template').html();
+  var sorgenteHtml = $('#elemento-template').html();
   var template = Handlebars.compile(sorgenteHtml);
 
-  for (var i = 0; i < listaFilm.length; i++) { //ciclo la lista dei film
-    var film = listaFilm[i]; //mi ricavo il singolo film
-
-    // cambia solo se è film o serie tv: cambio solo questo campio e lo faccio propagare nell'handlebars
+  for (var i = 0; i < listaElementi.length; i++) { //ciclo la lista degli elementi
+    var elemento = listaElementi[i]; //mi ricavo il singolo elemento
+    // title e original_title cambiano in name e original_name se è una serie tv
     var title, original_title;
-    if (tipo == "movie"){
-      title = film.title;
-      original_title = film.original_title;
+    if (type == "movie"){
+      title = elemento.title;
+      original_title = elemento.original_title;
     } else {
-      title = film.name; //(per le serie tv c'è name e non title)
-      original_title = film.original_name; //(per le serie tv c'è original_name e non original_title)
+      title = elemento.name; //(per le serie tv c'è name e non title)
+      original_title = elemento.original_name; //(per le serie tv c'è original_name e non original_title)
     }
 
     var context = { //compiliamo il context con ciò che ci serve
-      Tipo: tipo,
+      type: type,
       Titolo: title,
       Titolo_originale: original_title,
-      Lingua: film.original_language,
-      Voto: film.vote_average,
+      Lingua: elemento.original_language,
+      Voto: elemento.vote_average,
     }
 
-
     var html = template(context); //estraiamo l'html dal context compilato
-    risultatiFilm.append(html); //appendiamolo all'interno di "#risultati-film"
+    risultati.append(html); //appendiamolo all'interno di "#risultati"
   }
-
-  // // funzione per stampare le stelle
-  // function stampaStelle(stella){
-  //   // dimezzo e arrotondo il voto in funzione della creazione delle stelline
-  //   var voto = film.vote_average;
-  //   var stelle = Math.round(voto/2);
-  //   // console.log('stelle del film', stelle);
-  //
-  //   var contenitoreStelle = [];
-  //   // console.log(contenitoreStelle);
-  //   for (var i = 1; i <= 5; i++){
-  //     if(i <= stelle){
-  //       // console.log(i, 'stella piena');
-  //       // contenitoreStelle.push('<i class="fas fa-star"></i>');
-  //     } else {
-  //       // console.log(i, 'stella vuota');
-  //       // contenitoreStelle.push('<i class="far fa-star"></i>');
-  //     }
-  //   return contenitoreStelle
-  //
-  //   }
-  // }
-
-  // // funzione per stampare le bandiere
-  // function stampaBandiere(){
-  //   var aggiungiBandiera = '';
-  //   var lingua = film.original_language;
-  //   // console.log(lingua);
-  //   if (lingua === 'it'){
-  //     aggiungiBandiera = '<img src="img/it.png" alt="italia">'
-  //   } else if (lingua === 'en'){
-  //     aggiungiBandiera = '<img src="img/en.png" alt="inghilterra">'
-  //   } else {
-  //     aggiungiBandiera = lingua;
-  //   }
-  //   return aggiungiBandiera;
-  // }
-
-
-}
-
-// // Serietv
-//
-// // funzione per stampare la lista delle serieTv
-// function stampa(listaSerieTv){
-//   var risultatiSerieTv = $('#risultati-serietv');
-//
-//   var sorgenteHtml = $('#film-template').html();
-//   var template = Handlebars.compile(sorgenteHtml);
-//
-//   for (var j = 0; j < listaSerieTv.length; j++) { //ciclo la lista delle serie tv
-//     var serieTv = listaSerieTv[j]; //mi ricavo le singole serie tv
-//
-//     var contextSerieTv = { //compiliamo il context con ciò che ci serve
-//       Titolo: serieTv.title,
-//       Titolo_originale: serieTv.original_title,
-//       Lingua: stampaBandiereSerieTV(),
-//       Voto: serieTv.vote_average,
-//       Stelle: stampaStelleSerieTV(),
-//     }
-//
-//
-//     var htmlSerieTV = template(contextSerieTv); //estraiamo l'html dal context compilato
-//     risultatiSerieTv.append(htmlSerieTV); //appendiamolo all'interno di "#risultati-serietv"
-//   }
-//
-//   // funzione per stampare le stelle
-//   function stampaStelleSerieTV(stelleSerieTV){
-//     // dimezzo e arrotondo il voto in funzione della creazione delle stelline
-//     var votoSerieTV = serieTv.vote_average;
-//     var stelleSerieTV = Math.round(votoSerieTV/2);
-//     // console.log('stelle del film', stelle);
-//
-//     var contenitoreStelleSerieTV = [];
-//     // console.log(contenitoreStelle);
-//     for (var j = 1; j <= 5; j++){
-//       if(j <= stelleSerieTV){
-//         // console.log(i, 'stella piena');
-//         // contenitoreStelle.push('<i class="fas fa-star"></i>');
-//       } else {
-//         // console.log(i, 'stella vuota');
-//         // contenitoreStelle.push('<i class="far fa-star"></i>');
-//       }
-//     return contenitoreStelleSerieTV
-//
-//     }
-//   }
-//
-//   // funzione per stampare le bandiere
-//   function stampaBandiereSerieTV(){
-//     var aggiungiBandieraSerieTV = '';
-//     var linguaSerieTV = serieTv.original_language;
-//     // console.log(lingua);
-//     if (linguaSerieTV === 'it'){
-//       aggiungiBandieraSerieTV = '<img src="img/it.png" alt="italia">'
-//     } else if (linguaSerieTV === 'en'){
-//       aggiungiBandieraSerieTV = '<img src="img/en.png" alt="inghilterra">'
-//     } else {
-//       aggiungiBandieraSerieTV = linguaSerieTV;
-//     }
-//     return aggiungiBandieraSerieTV;
-//   }
-//
-//
-// }
