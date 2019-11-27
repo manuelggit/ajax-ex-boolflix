@@ -4,20 +4,15 @@
   box-sizing: border-box;
 }
 
-header, #risultati {
+header {
   margin: 20px;
+}
+
+.elemento {
+  margin: 30px;
 }
 
 .info-lingua img {
   width: auto;
   height: 15px;
-}
-
-#risultati-film {
-  width: 50%;
-  height: 100vh;
-}
-
-#risultati-serietv {
-  background-color: yellow;
 }

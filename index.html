@@ -13,7 +13,7 @@
     <button type="button">Vai!</button>
   </header>
 
-  <div id="risultati-film">
+  <div id="risultati">
 
   </div>
 
@@ -25,15 +25,14 @@
   <!-- handlebars -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.4.2/handlebars.min.js"></script>
 
-  <script id="film-template" type="text/x-handlebars-template">
-    <div class="film">
+  <script id="template" type="text/x-handlebars-template">
+    <div class="elemento">
       <ul>
-        <li><span class="title">Tipo: </span><span class="info">{{Tipo}}</span></li>
-        <li><span class="title">Titolo: </span><span class="info">{{Titolo}}</span></li>
-        <li><span class="title">Titolo originale: </span><span class="info">{{Titolo_originale}}</li>
-        <li><span class="title">Lingua: </span><span class="info-lingua">{{Lingua}}</span></li>
-        <li><span class="title">Voto: </span><span class="info">{{Voto}}</span></li>
-        <!-- <li><span class="info">{{{Stelle}}}</span></li> -->
+        <li><span class="title">Tipo: </span><span class="info">{{tipo}}</span></li>
+        <li><span class="title">Titolo: </span><span class="info">{{titolo}}</span></li>
+        <li><span class="title">Titolo originale: </span><span class="info">{{titolo_originale}}</li>
+        <li><span class="title">Lingua: </span><span class="info-lingua">{{lingua}}</span></li>
+        <li><span class="title">Voto: </span><span class="info">{{voto}} - {{{stelle}}}</i></span></li>
       </ul>
     </div>
   </script>

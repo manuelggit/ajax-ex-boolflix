@@ -22,7 +22,9 @@ $(document).ready(function(){
         // console.log(data); // stampo tutto
         // // stampo a console tutti gli oggetti
         var listaElementi = data.results; // stampo solo l'array di oggetti "results"
+        console.log(listaElementi);
         stampa("movie", listaElementi); //invoco la funzione per stampare la lista degli elementi "movie"
+
         if (listaElementi.length > 0) { //rendo l'input vuoto solo se ho ricevuto dei risultati
           inputReset(); // invoco la funzione di inputReset
         }
@@ -47,6 +49,7 @@ $(document).ready(function(){
         // console.log(data); // stampo tutto
         var listaElementi = data.results; // stampo solo l'array di oggetti "results"
         stampa("tv", listaElementi); //invoco la funzione per stampare la lista degli elementi "tv"
+
         if (listaElementi.length > 0) { //rendo l'input vuoto solo se ho ricevuto dei risultati
           inputReset(); // invoco la funzione di inputReset
         }
@@ -71,11 +74,33 @@ function inputReset(){
   $('input').val(""); //rendo l'input vuoto al click
 }
 
-// funzione per stampare la lista degli elementi
+
+// funzione per stampare le stelle
+function stampaStelle(voto){
+  voto = Math.floor(voto/2);
+  console.log(voto); // che in questo modo corrisponde al numero di stelle
+
+  var res = '';
+
+  for(var i = 1; i <=5; i++){
+
+    if(i <= voto){
+      res += '<i class="fas fa-star"></i>';
+    } else {
+      res += '<i class="far fa-star"></i>';
+    }
+
+  }
+  return res;
+};
+
+
+
+// funzione per stampare a schermo la lista degli elementi
 function stampa(type, listaElementi){
   var risultati = $('#risultati');
 
-  var sorgenteHtml = $('#elemento-template').html();
+  var sorgenteHtml = $('#template').html();
   var template = Handlebars.compile(sorgenteHtml);
 
   for (var i = 0; i < listaElementi.length; i++) { //ciclo la lista degli elementi
@@ -92,12 +117,15 @@ function stampa(type, listaElementi){
 
     var context = { //compiliamo il context con ciò che ci serve
       type: type,
-      Titolo: title,
-      Titolo_originale: original_title,
-      Lingua: elemento.original_language,
-      Voto: elemento.vote_average,
-    }
+      titolo: title,
+      titolo_originale: original_title,
+      lingua: elemento.original_language,
+      voto: elemento.vote_average,
+      stelle: stampaStelle(elemento.vote_average),
+    };
 
     var html = template(context); //estraiamo l'html dal context compilato
     risultati.append(html); //appendiamolo all'interno di "#risultati"
   }
+
+}
