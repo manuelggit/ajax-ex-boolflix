@@ -11,3 +11,8 @@ header {
 .elemento {
   margin: 30px;
 }
+
+.info-lingua img {
+  width: auto;
+  height: 15px;
+}
