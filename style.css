@@ -12,3 +12,12 @@ header, #risultati {
   width: auto;
   height: 15px;
 }
+
+#risultati-film {
+  width: 50%;
+  height: 100vh;
+}
+
+#risultati-serietv {
+  background-color: yellow;
+}
