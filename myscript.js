@@ -22,7 +22,7 @@ $(document).ready(function(){
         // console.log(data); // stampo tutto
         // // stampo a console tutti gli oggetti
         var listaFilm = data.results; // stampo solo l'array di oggetti "results"
-        stampa(listaFilm); //invoco la funzione per stampare la lista dei film
+        stampa("movie", listaFilm); //invoco la funzione per stampare la lista dei film
         if (listaFilm.length > 0) { //rendo l'input vuoto solo se ho ricevuto dei risultati-film
           inputReset(); // invoco la funzione di inputReset
         }
@@ -47,7 +47,7 @@ $(document).ready(function(){
         // console.log(data); // stampo tutto
         // // stampo a console tutti gli oggetti
         var listaFilm = data.results; // stampo solo l'array di oggetti "results"
-        stampa(listaFilm); //invoco la funzione per stampare la lista dei film
+        stampa("tv", listaFilm); //invoco la funzione per stampare la lista dei film
         if (listaFilm.length > 0) { //rendo l'input vuoto solo se ho ricevuto dei risultati-film
           inputReset(); // invoco la funzione di inputReset
         }
@@ -58,24 +58,6 @@ $(document).ready(function(){
       }
 
     });
-
-    // $.ajax({
-    //   url: "https://api.themoviedb.org/3/search/tv?api_key=26b65514bf0d0d8d8b3921ff50e0770b",
-    //   method: "GET",
-    //   data: {
-    //     query: query, // cambio dinamicamente l'url con la ricerca dell'utente
-    //     original_language: "it-IT", //cerco solo i risultati-film in italiano
-    //   },
-    //   success: function(serieTvapi){
-    //     // console.log(serieTvapi);
-    //     var listaSerieTv = serieTvapi.results;
-    //     console.log(listaSerieTv);
-    //     stampa(listaSerieTv);
-    //     if (listaSerieTv.length > 0) {
-    //       inputReset();
-    //     }
-    //   }
-    // });
 
   });
 
@@ -100,9 +82,20 @@ function stampa(tipo, listaFilm){
   for (var i = 0; i < listaFilm.length; i++) { //ciclo la lista dei film
     var film = listaFilm[i]; //mi ricavo il singolo film
 
+    // cambia solo se è film o serie tv: cambio solo questo campio e lo faccio propagare nell'handlebars
+    var title, original_title;
+    if (tipo == "movie"){
+      title = film.title;
+      original_title = film.original_title;
+    } else {
+      title = film.name; //(per le serie tv c'è name e non title)
+      original_title = film.original_name; //(per le serie tv c'è original_name e non original_title)
+    }
+
     var context = { //compiliamo il context con ciò che ci serve
-      Titolo: film.title,
-      Titolo_originale: film.original_title,
+      Tipo: tipo,
+      Titolo: title,
+      Titolo_originale: original_title,
       Lingua: film.original_language,
       Voto: film.vote_average,
     }
