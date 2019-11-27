@@ -107,8 +107,14 @@ function stampaBandiere(lingua){
   }
 
   return "";
-
 }
+
+
+
+// funzione per stampare il poster
+// function stampaPoster(){
+//
+// }
 
 
 
@@ -122,6 +128,10 @@ function stampa(type, listaElementi){
   for (var i = 0; i < listaElementi.length; i++) { //ciclo la lista degli elementi
     var elemento = listaElementi[i]; //mi ricavo il singolo elemento
     // title e original_title cambiano in name e original_name se è una serie tv
+    var posterUrl = 'https://image.tmdb.org/t/p/';
+    var widthPoster = "w185";
+    var posterPath = elemento.poster_path;
+    var poster = '<img src=' + posterUrl + widthPoster + posterPath + '>';
     var title, original_title;
     if (type == "movie"){
       title = elemento.title;
@@ -132,7 +142,8 @@ function stampa(type, listaElementi){
     }
 
     var context = { //compiliamo il context con ciò che ci serve
-      type: type,
+      poster: poster,
+      tipo: type,
       titolo: title,
       titolo_originale: original_title,
       lingua: elemento.original_language,
@@ -140,6 +151,9 @@ function stampa(type, listaElementi){
       stelle: stampaStelle(elemento.vote_average),
       bandiera: stampaBandiere(elemento.original_language),
     };
+
+    // console.log(elemento.poster_path);
+
 
     var html = template(context); //estraiamo l'html dal context compilato
     risultati.append(html); //appendiamolo all'interno di "#risultati"
