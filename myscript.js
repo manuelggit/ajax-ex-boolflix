@@ -22,7 +22,7 @@ $(document).ready(function(){
         // console.log(data); // stampo tutto
         // // stampo a console tutti gli oggetti
         var listaElementi = data.results; // stampo solo l'array di oggetti "results"
-        console.log(listaElementi);
+        // console.log(listaElementi);
         stampa("movie", listaElementi); //invoco la funzione per stampare la lista degli elementi "movie"
 
         if (listaElementi.length > 0) { //rendo l'input vuoto solo se ho ricevuto dei risultati
@@ -67,6 +67,8 @@ $(document).ready(function(){
 
 
 
+
+
 // FUNZIONI
 
 // creo la funzione di reset dell'input
@@ -78,7 +80,7 @@ function inputReset(){
 // funzione per stampare le stelle
 function stampaStelle(voto){
   voto = Math.floor(voto/2);
-  console.log(voto); // che in questo modo corrisponde al numero di stelle
+  // console.log(voto); // che in questo modo corrisponde al numero di stelle
 
   var res = '';
 
@@ -93,6 +95,20 @@ function stampaStelle(voto){
   }
   return res;
 };
+
+
+
+// funzione per stampare le bandiere
+function stampaBandiere(lingua){
+  var bandiereDisponibili = ['it', 'en'];
+
+  if (bandiereDisponibili.includes(lingua)){
+    return "<img src='img/" + lingua + ".png'>";
+  }
+
+  return "";
+
+}
 
 
 
@@ -122,6 +138,7 @@ function stampa(type, listaElementi){
       lingua: elemento.original_language,
       voto: elemento.vote_average,
       stelle: stampaStelle(elemento.vote_average),
+      bandiera: stampaBandiere(elemento.original_language),
     };
 
     var html = template(context); //estraiamo l'html dal context compilato
