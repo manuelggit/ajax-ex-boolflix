@@ -3,18 +3,20 @@ $(document).ready(function(){
   // stampo in console quello che digito a tastiera
   $('input').keyup(function(event){
 
-    var query = $('input').val().toLowerCase();
+    var ricerca = $('input').val().toLowerCase();
     // console.log(query);
 
   // al click sul "button"
   $('button').click(function(){
+
+    reset(); //resetto l'output
 
     // faccio chiamata ajax movie
     $.ajax ({
       url: "https://api.themoviedb.org/3/search/movie?api_key=26b65514bf0d0d8d8b3921ff50e0770b",
       method: "GET",
       data: {
-        query: query, // cambio dinamicamente l'url con la ricerca dell'utente
+        query: ricerca, // cambio dinamicamente l'url con la ricerca dell'utente
         original_language: "it-IT", //cerco solo i risultati in italiano
       },
 
@@ -41,7 +43,7 @@ $(document).ready(function(){
       url: "https://api.themoviedb.org/3/search/tv?api_key=26b65514bf0d0d8d8b3921ff50e0770b",
       method: "GET",
       data: {
-        query: query, // cambio dinamicamente l'url con la ricerca dell'utente
+        query: ricerca, // cambio dinamicamente l'url con la ricerca dell'utente
         original_language: "it-IT", //cerco solo i risultati in italiano
       },
 
@@ -71,7 +73,14 @@ $(document).ready(function(){
 
 // FUNZIONI
 
-// creo la funzione di reset dell'input
+// funzione che resetta l'output alla nuova ricerca
+function reset(){
+  $('#risultati').html('');
+}
+
+
+
+// funzione di reset dell'input
 function inputReset(){
   $('input').val(""); //rendo l'input vuoto al click
 }
@@ -108,13 +117,6 @@ function stampaBandiere(lingua){
 
   return "";
 }
-
-
-
-// funzione per stampare il poster
-// function stampaPoster(){
-//
-// }
 
 
 
