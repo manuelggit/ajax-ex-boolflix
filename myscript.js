@@ -1,59 +1,7 @@
 $(document).ready(function(){
 
-  // al click sul "button"
-  $('button').click(function(){
-
-    // faccio chiamata ajax movie
-    $.ajax ({
-      url: "https://api.themoviedb.org/3/search/movie?api_key=26b65514bf0d0d8d8b3921ff50e0770b",
-      method: "GET",
-      data: {
-        query: ricerca, // cambio dinamicamente l'url con la ricerca dell'utente
-        original_language: "it-IT", //cerco solo i risultati in italiano
-      },
-
-      success: function (data) {
-        // console.log(data); // stampo tutto
-        // // stampo a console tutti gli oggetti
-        var listaElementi = data.results; // stampo solo l'array di oggetti "results"
-        // console.log(listaElementi);
-        stampa("movie", listaElementi); //invoco la funzione per stampare la lista degli elementi "movie"
-
-        if (listaElementi.length > 0) { //rendo l'input vuoto solo se ho ricevuto dei risultati
-          inputReset(); // invoco la funzione di inputReset
-        }
-      },
-
-      error: function(error){
-        alert("c'è un errore!");
-      }
-
-    });
-
-    // faccio chiamata ajax tv
-    $.ajax ({
-      url: "https://api.themoviedb.org/3/search/tv?api_key=26b65514bf0d0d8d8b3921ff50e0770b",
-      method: "GET",
-      data: {
-        query: ricerca, // cambio dinamicamente l'url con la ricerca dell'utente
-        original_language: "it-IT", //cerco solo i risultati in italiano
-      },
-
-      success: function (data) {
-        // console.log(data); // stampo tutto
-        var listaElementi = data.results; // stampo solo l'array di oggetti "results"
-        stampa("tv", listaElementi); //invoco la funzione per stampare la lista degli elementi "tv"
-
-        if (listaElementi.length > 0) { //rendo l'input vuoto solo se ho ricevuto dei risultati
-          inputReset(); // invoco la funzione di inputReset
-        }
-      },
-
-      error: function(error){
-        alert("c'è un errore!");
-      }
-    });
-  });
+  // al click sul "button" faccio partire la funzione cerca
+  $('button').click(cerca);
 
 });
 
@@ -75,7 +23,11 @@ function cerca() {
   reset(); //invoco la funzione di reset dell'output
   var urlMovie = 'https://api.themoviedb.org/3/search/movie';
   var urlTv = 'https://api.themoviedb.org/3/search/tv';
-  var ricerca = $('input').val().toLowerCase();
+  var ricercaUtente = $('input').val().toLowerCase();
+
+  getData(urlTv, ricercaUtente, 'tv');
+  getData(urlMovie, ricercaUtente, 'movie');
+
 }
 
 
@@ -83,6 +35,32 @@ function cerca() {
 // funzione di reset dell'input
 function inputReset(){
   $('input').val(""); //rendo l'input vuoto al click
+}
+
+
+
+// getData
+function getData(url, ricercaUtente, type) {
+
+  var apiKey = '26b65514bf0d0d8d8b3921ff50e0770b';
+
+  $.ajax({
+
+    url: url,
+    method: 'GET',
+    data: {
+      api_key: apiKey,
+      query: ricercaUtente,
+      language: "it-IT",
+    },
+    success: function(data){
+      var listaElementi = data.results;
+      stampa(type, listaElementi);
+    },
+    error: function(errore){
+      alert("c'è un errore");
+    }
+  })
 }
 
 
