@@ -16,3 +16,7 @@ header {
   width: auto;
   height: 15px;
 }
+
+#risultati-serietv {
+  background-color: yellow;
+}

@@ -100,7 +100,8 @@ function stampaBandiere(lingua){
 
 // funzione per stampare a schermo la lista degli elementi
 function stampa(type, listaElementi){
-  var risultati = $('#risultati');
+  var risultatiFilm = $('#risultati-film');
+  var risultatiSerieTV = $('#risultati-serietv');
 
   var sorgenteHtml = $('#template').html();
   var template = Handlebars.compile(sorgenteHtml);
@@ -132,11 +133,13 @@ function stampa(type, listaElementi){
       bandiera: stampaBandiere(elemento.original_language),
     };
 
-    // console.log(elemento.poster_path);
-
-
     var html = template(context); //estraiamo l'html dal context compilato
-    risultati.append(html); //appendiamolo all'interno di "#risultati"
+    // risultati.append(html); //appendiamolo all'interno di "#risultati"
+    if (type == 'movie') {
+      risultatiFilm.append(html); // se il type è "movie" appendi nei risultatiFilm
+    } else {
+      risultatiSerieTV.append(html); // altrimenti appendi nei risultatiSerieTV
+    }
   }
 
 }
