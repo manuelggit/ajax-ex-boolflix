@@ -1,15 +1,7 @@
 $(document).ready(function(){
 
-  // stampo in console quello che digito a tastiera
-  $('input').keyup(function(event){
-
-    var ricerca = $('input').val().toLowerCase();
-    // console.log(query);
-
   // al click sul "button"
   $('button').click(function(){
-
-    reset(); //resetto l'output
 
     // faccio chiamata ajax movie
     $.ajax ({
@@ -62,7 +54,6 @@ $(document).ready(function(){
       }
     });
   });
-  })
 
 });
 
@@ -76,6 +67,15 @@ $(document).ready(function(){
 // funzione che resetta l'output alla nuova ricerca
 function reset(){
   $('#risultati').html('');
+}
+
+
+// funzione di ricerca
+function cerca() {
+  reset(); //invoco la funzione di reset dell'output
+  var urlMovie = 'https://api.themoviedb.org/3/search/movie';
+  var urlTv = 'https://api.themoviedb.org/3/search/tv';
+  var ricerca = $('input').val().toLowerCase();
 }
 
 
