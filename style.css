@@ -2,14 +2,86 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  color: white;
 }
 
+
+
+/* HEADER */
+
 header {
-  margin: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: black;
+  height: 100px;
+}
+
+#header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  margin: auto;
+}
+
+#logo, #input {
+  width: 25%;
+}
+
+#input {
+  text-align: right;
+}
+
+header div h1 {
+  color: red;
+}
+
+input, button {
+  color: black;
+}
+
+/* MAIN */
+
+main {
+  background-color: grey;
+  height: calc(100vh - 100px);
+  overflow: scroll;
+}
+
+#main {
+  width: 90%;
+  margin: auto;
+}
+
+ul li {
+  list-style-type: none;
+}
+
+ul li .title {
+  font-weight: bold;
+}
+
+ul li:nth-child(1) {
+  margin: 10px;
+}
+
+ul li:nth-child(2){
+  margin-bottom: 10px;
+}
+
+.info-tipo {
+  font-weight: bold;
+  font-size: 1.2em;
+  background-color: red;
+  padding: 5px;
 }
 
 .elemento {
-  margin: 30px;
+  width: calc(100%/5);
+  flex-shrink: 0;
+  padding: 10px;
+  text-align: center;
 }
 
 .info-lingua img {
@@ -17,6 +89,12 @@ header {
   height: 15px;
 }
 
-#risultati-serietv {
-  background-color: yellow;
+.info-voto i {
+  color: red;
+}
+
+#risultati-film, #risultati-serietv {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }

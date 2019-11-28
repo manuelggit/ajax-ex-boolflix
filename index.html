@@ -9,14 +9,28 @@
 <body>
 
   <header>
-    <input type="text" name="" value="" placeholder="Cerca...">
-    <button type="button">Vai!</button>
+    <div id="header">
+      <div id="logo">
+        <h1>BOOLFLIX</h1>
+      </div>
+      <div id="input">
+        <input type="text" name="" value="" placeholder="Cerca...">
+        <button type="button">Vai!</button>
+      </div>
+    </div>
   </header>
 
-  <div id="risultati-film">
-  </div>
-  <div id="risultati-serietv">
-  </div>
+  <main>
+
+    <div id="main">
+      <div id="risultati-film">
+      </div>
+      <div id="risultati-serietv">
+      </div>
+    </div>
+
+  </main>
+
 
 
 
@@ -29,11 +43,11 @@
     <div class="elemento">
       <ul>
         <li><span class="info">{{{poster}}}</span></li>
-        <li><span class="title">Tipo: </span><span class="info">{{tipo}}</span></li>
+        <li><span class="info-tipo">{{tipo}}</span></li>
         <li><span class="title">Titolo: </span><span class="info">{{titolo}}</span></li>
         <li><span class="title">Titolo originale: </span><span class="info">{{titolo_originale}}</li>
         <li><span class="title">Lingua: </span><span class="info-lingua">{{lingua}} - {{{bandiera}}}</span></li>
-        <li><span class="title">Voto: </span><span class="info">{{voto}} - {{{stelle}}}</i></span></li>
+        <li><span class="title">Voto: </span><span class="info-voto">{{voto}} - {{{stelle}}}</i></span></li>
       </ul>
     </div>
   </script>
