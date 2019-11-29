@@ -36,19 +36,22 @@ header {
 }
 
 input {
-  padding: 8px;
+  padding: 5px;
   width: 75%;
+  font-size: 1em;
 }
 
 button {
-  padding: 10px;
+  padding: 5px;
   width: 20%;
   border-radius: 2px;
   cursor: pointer;
+  font-size: 1em;
 }
 
 header div h1 {
   color: red;
+  font-size: 3em;
 }
 
 input, button {
@@ -56,6 +59,11 @@ input, button {
 }
 
 /* MAIN */
+
+h2 {
+  margin-top: 20px;
+  font-size: 2em;
+}
 
 main {
   background-color: grey;
@@ -69,7 +77,12 @@ main {
 }
 
 ul {
-  margin-top: -300px;
+  position: absolute;
+  margin-top: -400px;
+  margin-left: 90px;
+  width: 60%;
+  height: 40%;
+  overflow: scroll;
   display: none;
 }
 
@@ -90,10 +103,6 @@ ul li:nth-child(1){
   opacity: 0.3;
 }
 
-.info-poster:hover ul {
-  display: block;
-}
-
 .info-tipo {
   font-weight: bold;
   font-size: 1.2em;
@@ -102,6 +111,7 @@ ul li:nth-child(1){
 }
 
 .elemento {
+  position: relative;
   width: calc(100%/3);
   height: 100vh;
   flex-shrink: 0;

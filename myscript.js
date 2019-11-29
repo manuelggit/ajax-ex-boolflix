@@ -14,13 +14,16 @@ $(document).ready(function(){
 
 // funzione che resetta l'output alla nuova ricerca
 function reset(){
-  $('#risultati').html('');
+  $('#film').html('');
+  $('#risultati-film').html('');
+  $('#serietv').html('');
+  $('#risultati-serietv').html('');
 }
 
 
 // funzione di ricerca
 function cerca() {
-  reset(); //invoco la funzione di reset dell'output
+  reset(  ); //invoco la funzione di reset dell'output
   var urlMovie = 'https://api.themoviedb.org/3/search/movie';
   var urlTv = 'https://api.themoviedb.org/3/search/tv';
   var ricercaUtente = $('input').val().toLowerCase();
@@ -100,6 +103,10 @@ function stampaBandiere(lingua){
 
 // funzione per stampare a schermo la lista degli elementi
 function stampa(type, listaElementi){
+  var titoloSezFilm = $('#film');
+  var titoloSezSerieTv = $('#serietv');
+  titoloSezFilm.append('<h2>FILM</h2>');
+  titoloSezSerieTv.append('<h2>SERIE TV</h2>');
   var risultatiFilm = $('#risultati-film');
   var risultatiSerieTV = $('#risultati-serietv');
 
@@ -114,6 +121,7 @@ function stampa(type, listaElementi){
     var posterPath = elemento.poster_path;
     var poster = '<img src=' + posterUrl + widthPoster + posterPath + '>';
     var title, original_title;
+
     if (type == "movie"){
       title = elemento.title;
       original_title = elemento.original_title;
