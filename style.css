@@ -3,9 +3,8 @@
   margin: 0;
   box-sizing: border-box;
   color: white;
+  font-family: 'Oswald', sans-serif;
 }
-
-
 
 /* HEADER */
 
@@ -30,7 +29,22 @@ header {
 }
 
 #input {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   text-align: right;
+}
+
+input {
+  padding: 8px;
+  width: 75%;
+}
+
+button {
+  padding: 10px;
+  width: 20%;
+  border-radius: 2px;
+  cursor: pointer;
 }
 
 header div h1 {

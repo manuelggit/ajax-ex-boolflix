@@ -27,7 +27,6 @@ function cerca() {
 
   getData(urlTv, ricercaUtente, 'tv');
   getData(urlMovie, ricercaUtente, 'movie');
-
 }
 
 
@@ -55,6 +54,7 @@ function getData(url, ricercaUtente, type) {
     },
     success: function(data){
       var listaElementi = data.results;
+      console.log(listaElementi);
       stampa(type, listaElementi);
     },
     error: function(errore){
@@ -138,6 +138,7 @@ function stampa(type, listaElementi){
       voto: elemento.vote_average,
       stelle: stampaStelle(elemento.vote_average),
       bandiera: stampaBandiere(elemento.original_language),
+      trama: elemento.overview,
     };
 
     var html = template(context); //estraiamo l'html dal context compilato
