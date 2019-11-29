@@ -110,7 +110,7 @@ function stampa(type, listaElementi){
     var elemento = listaElementi[i]; //mi ricavo il singolo elemento
     // title e original_title cambiano in name e original_name se è una serie tv
     var posterUrl = 'https://image.tmdb.org/t/p/';
-    var widthPoster = "w185";
+    var widthPoster = "w342";
     var posterPath = elemento.poster_path;
     var poster = '<img src=' + posterUrl + widthPoster + posterPath + '>';
     var title, original_title;
@@ -120,6 +120,13 @@ function stampa(type, listaElementi){
     } else {
       title = elemento.name; //(per le serie tv c'è name e non title)
       original_title = elemento.original_name; //(per le serie tv c'è original_name e non original_title)
+    }
+
+    // se non trova il poster stampo un'immagine di default
+    if (posterPath === null) {
+      var poster = '<img src="img/default.jpg">';
+    } else {
+      var poster;
     }
 
     var context = { //compiliamo il context con ciò che ci serve

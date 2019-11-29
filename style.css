@@ -54,6 +54,11 @@ main {
   margin: auto;
 }
 
+ul {
+  margin-top: -300px;
+  display: none;
+}
+
 ul li {
   list-style-type: none;
 }
@@ -62,12 +67,17 @@ ul li .title {
   font-weight: bold;
 }
 
-ul li:nth-child(1) {
-  margin: 10px;
+ul li:nth-child(1){
+  margin-bottom: 10px;
 }
 
-ul li:nth-child(2){
-  margin-bottom: 10px;
+.info-poster:hover {
+  cursor: pointer;
+  opacity: 0.3;
+}
+
+.info-poster:hover ul {
+  display: block;
 }
 
 .info-tipo {
@@ -78,10 +88,15 @@ ul li:nth-child(2){
 }
 
 .elemento {
-  width: calc(100%/5);
+  width: calc(100%/3);
+  height: 100vh;
   flex-shrink: 0;
   padding: 10px;
   text-align: center;
+}
+
+.elemento div {
+  padding: 20px;
 }
 
 .info-lingua img {
